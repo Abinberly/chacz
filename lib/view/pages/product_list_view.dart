@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:make_up/helpers/app_themes.dart';
-import 'package:make_up/res/app_grid_tile.dart';
-import 'package:make_up/res/drawer_body.dart';
-import 'package:make_up/res/drawer_header_widget.dart';
-import 'package:make_up/product_controller.dart';
-import 'package:make_up/res/drawer_items_list.dart';
-import '../helpers/strings.dart';
+import 'package:make_up/view/pages/res/app_grid_tile.dart';
+import 'package:make_up/view/pages/res/drawer_body.dart';
+import 'package:make_up/view/pages/res/drawer_header_widget.dart';
+import 'package:make_up/controller/product_controller.dart';
+import 'package:make_up/view/pages/res/drawer_items_list.dart';
+import '../../helpers/strings.dart';
 import 'product_details_view.dart';
 
 class ProductListView extends StatelessWidget {
@@ -15,6 +15,7 @@ class ProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         leading: Builder(builder: (context) {
@@ -27,10 +28,10 @@ class ProductListView extends StatelessWidget {
                 color: AppThemes.appGreyColor,
               ));
         }),
-        title: Column(
+        title:  Column(
           children: [
-            Text(Strings.appTitle, style: AppThemes.appTitle),
-            Text(Strings.appCaption, style: AppThemes.subtitle2),
+            Text(Strings.appTitle, style: AppThemes.appTitle(fontSize: height*0.04)),
+            Text(Strings.appCaption, style: AppThemes.subtitle2(fontSize:height*0.013 )),
           ],
         ),
         actions: [
@@ -87,7 +88,7 @@ class ProductListView extends StatelessWidget {
               ))),
       drawer: Drawer(
         width: width * 0.6,
-        backgroundColor: Colors.grey[300],
+        backgroundColor: AppThemes.appLightGreyColor,
         child: Column(
           children: [
             const DrawerHeaderWidget(),

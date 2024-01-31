@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:make_up/product_controller.dart';
-import 'package:make_up/pages/product_list_view.dart';
+import 'package:make_up/controller/product_controller.dart';
+import 'package:make_up/helpers/app_themes.dart';
+import 'package:make_up/helpers/strings.dart';
+import 'package:make_up/view/pages/product_list_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Mkeup',
+      title: Strings.appTitle,
       theme: ThemeData(
-       primarySwatch: Colors.red
+      //  primarySwatch: Colors.red
       ),
       home: ProductListView(),
       debugShowCheckedModeBanner: false,
