@@ -15,12 +15,13 @@ class AppThemes {
     );
   }
 
-  static TextStyle headline3 = const TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  );
-
+  static TextStyle headline3({required double fontSize}) {
+    return GoogleFonts.bebasNeue(
+      color: const Color(0xFF5c1010),
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+    );
+  }
   static TextStyle subtitle1({required double fontSize}) {
     return GoogleFonts.urbanist(
         fontSize: fontSize, fontWeight: FontWeight.normal, color: Colors.black);
@@ -30,11 +31,9 @@ class AppThemes {
     return GoogleFonts.poppins(color: Colors.black, fontSize: fontSize);
   }
 
-  static TextStyle body1 = const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-    color: Colors.black,
-  );
+  static TextStyle body1 ({required double fontSize}) {
+    return GoogleFonts.poppins(color:const Color(0xFF5c1010), fontSize: fontSize);
+  }
 
   static TextStyle body2 = const TextStyle(
     fontSize: 12,
@@ -47,9 +46,11 @@ class AppThemes {
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
-  static Color appPrimaryColor = const Color.fromARGB(255, 212, 13, 13);
-  static Color appColor = const Color(0xFF770737);
+  static Color appRedColor = const Color.fromARGB(255, 212, 13, 13);
+  static Color appPurpleColor = const Color(0xFF770737);
   static Color appGreyColor = const Color(0xFF616161);
   static Color appBlackColor = const Color(0xFF000000);
   static Color appLightGreyColor = const Color(0xFFE0E0E0);
+  static Color applightRedColor = const Color(0xFFFF7F7F);
+
 }

@@ -1,44 +1,54 @@
 import 'dart:convert';
-
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-class ProductController extends GetxController{
+import 'package:get/get.dart';
+import 'package:make_up/model/makeup_product.dart';
+
+class ProductController extends GetxController {
   static const int _pageSize = 10;
-  var products = <dynamic>[].obs;
+  RxList<MakeupProduct> products = <MakeupProduct>[].obs;
   var isLoading = true.obs;
   var isLastPage = false.obs;
   int currentPage = 1;
+
   @override
-  void onInit(){
+  void onInit() {
     fetchProduct();
     super.onInit();
   }
-  Future<void>fetchProduct() async{
+
+  Future<void> fetchProduct() async {
     isLoading(true);
-    try{
-    final response = await http.get(Uri.parse('https://makeup-api.herokuapp.com/api/v1/products.json?page=$currentPage&limit=$_pageSize'));
-    if (response.statusCode == 200){
-      final List<dynamic>newProduct = jsonDecode(response.body);
-      if (newProduct.isNotEmpty){
-        products.addAll(newProduct);
-        currentPage ++;
-      }else{
-        isLastPage(true);
+    try {
+      final response = await http.get(Uri.parse(
+          'https://makeup-api.herokuapp.com/api/v1/products.json?page=$currentPage&limit=$_pageSize'));
+      if (response.statusCode == 200) {
+        final List<dynamic> newProductList = jsonDecode(response.body);
+
+        // Use RxList.obs factory method to ensure correct type
+        products = <MakeupProduct>[].obs;
+
+        // Add new items
+        products.assignAll(newProductList
+            .map((json) => MakeupProduct.fromJson(json))
+            .cast<MakeupProduct>());
+
+        if (newProductList.isNotEmpty) {
+          currentPage++;
+        } else {
+          isLastPage(true);
+        }
+      } else {
+        print('HTTP request failed with status: ${response.statusCode}');
       }
-    }else{
-      // ignore: avoid_print
-      print("Error fetching the products");
-    }
-    }catch(e){
-      // ignore: avoid_print
+    } catch (e) {
       print("Error while getting the data is $e");
-    }
-    finally{
+    } finally {
       isLoading(false);
     }
   }
-  void loadMoreProduct(){
-    if(!isLoading.value && !isLastPage.value){
+
+  void loadMoreProduct() {
+    if (!isLoading.value && !isLastPage.value) {
       fetchProduct();
     }
   }

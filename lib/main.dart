@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:make_up/controller/product_controller.dart';
 import 'package:make_up/helpers/app_themes.dart';
 import 'package:make_up/helpers/strings.dart';
+import 'package:make_up/view/pages/home_page.dart';
 import 'package:make_up/view/pages/product_list_view.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
       //  primarySwatch: Colors.red
       ),
-      home: ProductListView(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

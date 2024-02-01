@@ -51,7 +51,7 @@ class AppGridTile extends StatelessWidget {
                     onPressed: onIconTap,
                     icon: Icon(
                       icon,
-                      color: AppThemes.appPrimaryColor,
+                      color: AppThemes.appRedColor,
                       size: height*0.04,
                     ))
               ],

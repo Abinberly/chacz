@@ -1,45 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:make_up/helpers/app_themes.dart';
+import 'package:make_up/model/makeup_product.dart';
+import 'package:make_up/res/app_icon_button.dart';
+import 'package:make_up/res/product_detail_card.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  final dynamic product;
+  final MakeupProduct product;
   const ProductDetailsView({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(title: Text(product['brand'],style: GoogleFonts.poppins(color: const Color(0xFF770737)),),
-          actions: [
-          IconButton(
+      appBar: AppBar(
+        title: Text(
+          product.brand,
+          style: AppThemes.headline3(fontSize: 25),
+        ),
+        actions: [
+          AppIconButton(
               onPressed: () {},
-              icon:
-                  Icon(Icons.notifications_outlined, color: Colors.grey[700])),
-          IconButton(
+              icon: Icons.notifications_outlined,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
+          AppIconButton(
               onPressed: () {},
-              icon: Icon(Icons.favorite_outline_outlined,
-                  color: Colors.grey[700])),
-          IconButton(
+              icon: Icons.favorite_border,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
+          AppIconButton(
               onPressed: () {},
-              icon: Icon(Icons.shopping_bag_outlined, color: Colors.grey[700]))
+              icon: Icons.shopping_bag_outlined,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
         ],
-          ),
-          body:  SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(child: Image.network(product['image_link'])),
-                   const SizedBox(height: 10),
-                   Text(product['name'],style: GoogleFonts.poppins(fontSize: 12),),
-                   const SizedBox(height: 5),
-                  Text("Price : ${product['price']} \$",style: GoogleFonts.poppins(fontSize: 12),),
-                   const SizedBox(height: 10),
-                  Text("Description : ${product['description']}",style: GoogleFonts.poppins(fontSize: 10),textAlign:TextAlign.justify ,),
-                ],
-              ),
-            ),
-          ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ProductDetailCard(
+              image: product.imageLink,
+              brand: product.brand,
+              price: product.price.toString(),
+              description: product.description,
+              category: product.productType,
+            )),
+      ),
     );
   }
 }

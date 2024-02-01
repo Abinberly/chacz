@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:make_up/controller/product_logic.dart';
 import 'package:make_up/helpers/app_themes.dart';
-import 'package:make_up/view/pages/res/app_grid_tile.dart';
-import 'package:make_up/view/pages/res/drawer_body.dart';
-import 'package:make_up/view/pages/res/drawer_header_widget.dart';
+import 'package:make_up/res/app_grid_tile.dart';
+import 'package:make_up/res/app_icon_button.dart';
+import 'package:make_up/res/drawer_body.dart';
+import 'package:make_up/res/drawer_header_widget.dart';
 import 'package:make_up/controller/product_controller.dart';
-import 'package:make_up/view/pages/res/drawer_items_list.dart';
+import 'package:make_up/res/drawer_items_list.dart';
 import '../../helpers/strings.dart';
 import 'product_details_view.dart';
 
 class ProductListView extends StatelessWidget {
   final ProductController productController = Get.find();
+  final productLogic = ProductLogic(Get.find<ProductController>());
   ProductListView({super.key});
   @override
   Widget build(BuildContext context) {
@@ -25,28 +28,33 @@ class ProductListView extends StatelessWidget {
               },
               icon: Icon(
                 Icons.menu,
-                color: AppThemes.appGreyColor,
+                color: AppThemes.appPurpleColor,
               ));
         }),
-        title:  Column(
+        title: Column(
           children: [
-            Text(Strings.appTitle, style: AppThemes.appTitle(fontSize: height*0.04)),
-            Text(Strings.appCaption, style: AppThemes.subtitle2(fontSize:height*0.013 )),
+            Text(Strings.appTitle,
+                style: AppThemes.appTitle(fontSize: height * 0.04)),
+            Text(Strings.appCaption,
+                style: AppThemes.subtitle2(fontSize: height * 0.013)),
           ],
         ),
         actions: [
-          IconButton(
+          AppIconButton(
               onPressed: () {},
-              icon: Icon(Icons.notifications_outlined,
-                  color: AppThemes.appGreyColor)),
-          IconButton(
+              icon: Icons.notifications_outlined,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
+          AppIconButton(
               onPressed: () {},
-              icon: Icon(Icons.favorite_outline_outlined,
-                  color: AppThemes.appGreyColor)),
-          IconButton(
+              icon: Icons.favorite_border,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
+          AppIconButton(
               onPressed: () {},
-              icon: Icon(Icons.shopping_bag_outlined,
-                  color: AppThemes.appGreyColor))
+              icon: Icons.shopping_bag_outlined,
+              iconColor: AppThemes.appPurpleColor,
+              splashColor: AppThemes.applightRedColor),
         ],
       ),
       body: Obx(() => productController.isLoading.value
@@ -54,12 +62,7 @@ class ProductListView extends StatelessWidget {
               child: CircularProgressIndicator(),
             )
           : NotificationListener<ScrollEndNotification>(
-              onNotification: (ScrollEndNotification notification) {
-                if (notification.metrics.extentAfter == 0) {
-                  productController.loadMoreProduct();
-                }
-                return true;
-              },
+              onNotification: productLogic.onScrollEnd,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: GridView.builder(
@@ -70,12 +73,16 @@ class ProductListView extends StatelessWidget {
                       mainAxisSpacing: 8.0,
                       crossAxisSpacing: 8.0,
                     ),
+                    itemCount: productController.products.length,
                     itemBuilder: ((context, index) {
                       final product = productController.products[index];
+                      if (product.imageLink.isEmpty || product.price <= 0) {
+                        return const SizedBox.shrink();
+                      }
                       return AppGridTile(
-                        image: product['image_link'],
-                        brand: product['brand'] ?? 'Chakkz Special',
-                        price: product['price'],
+                        image: product.imageLink,
+                        brand: product.brand,
+                        price: product.price.toString(),
                         icon: Icons.favorite_border,
                         onTap: () {
                           Get.to(ProductDetailsView(

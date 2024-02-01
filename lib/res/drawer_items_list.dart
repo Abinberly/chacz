@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:make_up/helpers/strings.dart';
-import 'package:make_up/view/pages/res/drawer_items.dart';
+import 'package:make_up/res/drawer_items.dart';
 
 class DrawerItemList {
   final List<DrawerItems> items;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:make_up/helpers/app_themes.dart';
 
 class DrawerItems extends StatelessWidget {
   final String title;
@@ -15,22 +16,25 @@ class DrawerItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
 
     return ListTile(
       leading: Icon(
         leading,
-        color: Colors.grey[900],
+        color: AppThemes.appPurpleColor,
+        size: height * 0.025,
       ),
       trailing: Icon(
         trailing,
-        color: Colors.grey[700],
+        color: AppThemes.appPurpleColor,
         size: height * 0.02,
       ),
       title: Text(
         title,
         style: GoogleFonts.poppins(
-            fontWeight: FontWeight.normal, color: Colors.grey[900]),
+            fontWeight: FontWeight.normal,
+            color: AppThemes.appPurpleColor,
+            fontSize: height * 0.025),
       ),
       onTap: onTap,
     );
