@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:make_up/model/makeup_product.dart';
+
+import 'cart_controller.dart';
 
 class ProductController extends GetxController {
   static const int _pageSize = 10;
@@ -9,10 +13,11 @@ class ProductController extends GetxController {
   var isLoading = true.obs;
   var isLastPage = false.obs;
   int currentPage = 1;
+  final CartController cartController = Get.find<CartController>();
 
   @override
-  void onInit() {
-    fetchProduct();
+  void onInit() async {
+    await fetchProduct();
     super.onInit();
   }
 
@@ -45,6 +50,10 @@ class ProductController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  void addToCart(MakeupProduct product) {
+    cartController.addToCart(product);
   }
 
   void loadMoreProduct() {

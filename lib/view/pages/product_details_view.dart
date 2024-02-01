@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import 'package:make_up/controller/product_controller.dart';
 import 'package:make_up/helpers/app_themes.dart';
 import 'package:make_up/model/makeup_product.dart';
 import 'package:make_up/res/app_icon_button.dart';
@@ -7,12 +8,19 @@ import 'package:make_up/res/product_detail_card.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final MakeupProduct product;
-  const ProductDetailsView({Key? key, required this.product}) : super(key: key);
-
+   ProductDetailsView({Key? key, required this.product}) : super(key: key);
+final ProductController productController = Get.find<ProductController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: AppIconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icons.arrow_back,
+            iconColor: AppThemes.appPurpleColor,
+            splashColor: AppThemes.applightRedColor),
         title: Text(
           product.brand,
           style: AppThemes.headline3(fontSize: 25),
@@ -20,7 +28,7 @@ class ProductDetailsView extends StatelessWidget {
         actions: [
           AppIconButton(
               onPressed: () {},
-              icon: Icons.notifications_outlined,
+              icon: Icons.share,
               iconColor: AppThemes.appPurpleColor,
               splashColor: AppThemes.applightRedColor),
           AppIconButton(
@@ -44,6 +52,7 @@ class ProductDetailsView extends StatelessWidget {
               price: product.price.toString(),
               description: product.description,
               category: product.productType,
+              name: product.name,
             )),
       ),
     );

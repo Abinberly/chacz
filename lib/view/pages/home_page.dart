@@ -20,7 +20,7 @@ final controller = Get.put(BottomNavigationController());
           index: controller.tabIndex.value,
           children: [
             ProductListView(),
-            const CartPage(),
+             CartPage(),
             const ProfilePage(),
             const AboutPage(),
             

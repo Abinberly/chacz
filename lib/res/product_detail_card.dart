@@ -5,6 +5,7 @@ import 'package:make_up/res/app_icon_button.dart';
 class ProductDetailCard extends StatelessWidget {
   final String image;
   final String brand;
+  final String name;
   final String price;
   final String category;
   final String description;
@@ -14,7 +15,8 @@ class ProductDetailCard extends StatelessWidget {
       required this.brand,
       required this.price,
       required this.description,
-      required this.category});
+      required this.category,
+      required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +25,14 @@ class ProductDetailCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Image.network(
-            image,
-            height: height * 0.5,
-            width: double.maxFinite,
-            fit: BoxFit.scaleDown,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              image,
+              height: height * 0.5,
+              width: double.maxFinite,
+              fit: BoxFit.scaleDown,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,6 +46,10 @@ class ProductDetailCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppThemes.headline2(fontSize: height * 0.04)),
+                    Text( name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppThemes.headline3(fontSize: height * 0.025)),
                     Text("  \$$price",
                         style: AppThemes.subtitle1(fontSize: height * 0.03)),
                   ],
@@ -54,7 +63,7 @@ class ProductDetailCard extends StatelessWidget {
                       iconColor: AppThemes.appPurpleColor,
                       splashColor: AppThemes.applightRedColor),
                   Text(category,
-                      style: AppThemes.subtitle1(fontSize: height * 0.02)),
+                      style: AppThemes.subtitle1(fontSize: height * 0.025)),
                 ],
               ),
             ],

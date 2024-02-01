@@ -52,5 +52,6 @@ class AppThemes {
   static Color appBlackColor = const Color(0xFF000000);
   static Color appLightGreyColor = const Color(0xFFE0E0E0);
   static Color applightRedColor = const Color(0xFFFF7F7F);
+  static Color appWhiteColor = const Color(0xFFFFFFFF);
 
 }

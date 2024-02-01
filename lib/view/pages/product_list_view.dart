@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:make_up/controller/cart_controller.dart';
 import 'package:make_up/controller/product_logic.dart';
 import 'package:make_up/helpers/app_themes.dart';
 import 'package:make_up/res/app_grid_tile.dart';
@@ -13,6 +14,7 @@ import 'product_details_view.dart';
 
 class ProductListView extends StatelessWidget {
   final ProductController productController = Get.find();
+  final CartController cartController = Get.find();
   final productLogic = ProductLogic(Get.find<ProductController>());
   ProductListView({super.key});
   @override
@@ -89,7 +91,10 @@ class ProductListView extends StatelessWidget {
                             product: product,
                           ));
                         },
-                        onIconTap: () {},
+                        onIconTap: () {}, 
+                        onTapCart: () {
+                          productController.addToCart(product);
+                         },
                       );
                     })),
               ))),
