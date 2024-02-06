@@ -16,4 +16,8 @@ class Strings {
   static const String itemMoved = 'Item moved';
   static const String proceed = 'Proceed';
   static const String buyNow = 'Buy Now';
+    static const String itemAdded = 'Item added';
+      static const String itemAddedTo = 'Item added to cart.';
+
+
 }

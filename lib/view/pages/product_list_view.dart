@@ -5,6 +5,7 @@ import 'package:make_up/controller/product_logic.dart';
 import 'package:make_up/helpers/app_themes.dart';
 import 'package:make_up/view/res/app_grid_tile.dart';
 import 'package:make_up/view/res/app_icon_button.dart';
+import 'package:make_up/view/res/app_snackbar.dart';
 import 'package:make_up/view/res/drawer_body.dart';
 import 'package:make_up/view/res/drawer_header_widget.dart';
 import 'package:make_up/controller/product_controller.dart';
@@ -87,13 +88,12 @@ class ProductListView extends StatelessWidget {
                         price: product.price.toString(),
                         icon: Icons.favorite_border,
                         onTap: () {
-                          Get.to(ProductDetailsView(
-                            product: product,
-                          ));
+                         Get.to(ProductDetailsView(product: product));
                         },
                         onIconTap: () {}, 
                         onTapCart: () {
                           productController.addToCart(product);
+                          AppSnackbar.show(messageTitle: Strings.itemAdded, message: Strings.itemAddedTo, titleFontSize: height*0.02, messageFontSize: height*0.03);
                          },
                       );
                     })),

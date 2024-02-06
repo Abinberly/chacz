@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:make_up/controller/cart_controller.dart';
 import 'package:make_up/helpers/app_themes.dart';
-import 'package:make_up/model/makeup_product.dart';
 import 'package:make_up/view/res/app_button.dart';
 import 'package:make_up/view/res/app_icon_button.dart';
 import 'package:make_up/view/res/app_snackbar.dart';
 import 'package:make_up/view/res/product_detail_card.dart';
-
 import '../../helpers/strings.dart';
 
 class BuyNowPage extends StatelessWidget {
