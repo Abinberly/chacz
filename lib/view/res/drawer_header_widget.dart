@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:make_up/helpers/app_themes.dart';
 
-import '../helpers/strings.dart';
+import '../../helpers/strings.dart';
 
 class DrawerHeaderWidget extends StatelessWidget {
   const DrawerHeaderWidget({super.key});

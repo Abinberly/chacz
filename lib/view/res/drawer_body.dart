@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:make_up/res/drawer_items.dart';
+import 'package:make_up/view/res/drawer_items.dart';
 
 class DrawerBody extends StatelessWidget {
   final List<DrawerItems> items;

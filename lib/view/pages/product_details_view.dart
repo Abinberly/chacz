@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:make_up/controller/product_controller.dart';
 import 'package:make_up/helpers/app_themes.dart';
 import 'package:make_up/model/makeup_product.dart';
-import 'package:make_up/res/app_icon_button.dart';
-import 'package:make_up/res/product_detail_card.dart';
+import 'package:make_up/view/res/app_icon_button.dart';
+import 'package:make_up/view/res/product_detail_card.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final MakeupProduct product;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:make_up/helpers/app_themes.dart';
-import 'package:make_up/res/app_icon_button.dart';
+import 'package:make_up/view/res/app_icon_button.dart';
 
 class ProductDetailCard extends StatelessWidget {
   final String image;

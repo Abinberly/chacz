@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:make_up/controller/cart_controller.dart';
 import 'package:make_up/controller/product_logic.dart';
 import 'package:make_up/helpers/app_themes.dart';
-import 'package:make_up/res/app_grid_tile.dart';
-import 'package:make_up/res/app_icon_button.dart';
-import 'package:make_up/res/drawer_body.dart';
-import 'package:make_up/res/drawer_header_widget.dart';
+import 'package:make_up/view/res/app_grid_tile.dart';
+import 'package:make_up/view/res/app_icon_button.dart';
+import 'package:make_up/view/res/drawer_body.dart';
+import 'package:make_up/view/res/drawer_header_widget.dart';
 import 'package:make_up/controller/product_controller.dart';
-import 'package:make_up/res/drawer_items_list.dart';
+import 'package:make_up/view/res/drawer_items_list.dart';
 import '../../helpers/strings.dart';
 import 'product_details_view.dart';
 
@@ -66,7 +66,7 @@ class ProductListView extends StatelessWidget {
           : NotificationListener<ScrollEndNotification>(
               onNotification: productLogic.onScrollEnd,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding:  EdgeInsets.symmetric(horizontal: width*0.01),
                 child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -104,8 +104,12 @@ class ProductListView extends StatelessWidget {
         child: Column(
           children: [
             const DrawerHeaderWidget(),
-            DrawerBody(
-              items: drawerItemsList.items,
+            Expanded(
+              child: SingleChildScrollView(
+                child: DrawerBody(
+                  items: drawerItemsList.items,
+                ),
+              ),
             ),
           ],
         ),
